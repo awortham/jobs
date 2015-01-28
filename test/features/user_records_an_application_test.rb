@@ -80,6 +80,14 @@ class UserRecordsAnApplication < ActionDispatch::IntegrationTest
     assert page.has_content? "high"
   end
 
+  def test_displays_position_and_notes
+    sign_in_to_site
+    app = create(:application)
+    visit application_path(app)
+    assert page.has_content? app.notes
+    assert page.has_content? app.position
+  end
+
   private
 
   def sign_in_to_site
